@@ -16,7 +16,7 @@ export default class AuthController {
     if (body.userName === userName && body.password === password) {
       delete user.password;
       return res.status(200).send({
-        ...user,
+        ...userName,
         accessToken: Jwt.signToken(userId)
       });
     }
