@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../server';
+import app from '../src';
 
 chai.use(chaiHttp);
 
@@ -13,6 +13,6 @@ describe('Home route', () => {
     expect(response).to.have.status(200);
     expect(response.body)
       .to.have.property('message')
-      .to.contain(" Welcome to Hackerbay backend challenge");
+      .to.contain('Welcome to Hackerbay.io backend challenge');
   });
 });

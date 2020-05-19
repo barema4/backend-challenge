@@ -1,5 +1,8 @@
 import * as JWT from 'jsonwebtoken';
-// import expressJwt from 'express-jwt';
+import expressJwt from 'express-jwt';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default class Jwt {
   static signToken = (userId) => {
@@ -18,4 +21,10 @@ export default class Jwt {
 
     return { token, exp, iat };
   };
+
+  static requireSignIn = expressJwt({
+    secret: process.env.JWT_SECRET,
+    issuer: process.env.JWT_ISSUER,
+    requestProperty: 'auth',
+  });
 }
