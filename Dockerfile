@@ -2,7 +2,7 @@
 # Specify base image
 FROM node:alpine
 
-WORKDIR /usr/hackerbay-backend-challenge
+WORKDIR /usr/backend-challenge
 
 COPY ./package.json ./
 
