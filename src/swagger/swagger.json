@@ -1,0 +1,192 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "termsOfService": "http://swagger.io/terms/",
+      "description": "Backend interview challenge",
+      "title": "Backend challenge",
+      "version": "1.0"
+    },
+    "produces": [
+      "application/json"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "tags": [
+      {
+        "name": "Authentication",
+        "description": "About user login and returning a JWT in the response body"
+      },
+      {
+        "name": "JSON patching",
+        "description": "Update data in the user object"
+      },
+      {
+        "name": "Thumbnail generation",
+        "description": "Generating public image thumbnails"
+      }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+          "description": "Login user",
+          "consumes": [
+            "application/json"
+          ],
+          "security": [],
+          "parameters": [
+            {
+              "$ref": "#/parameters/login"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "ok"
+            },
+            "422": {
+              "description": "unprocessable entity"
+            },
+            "500": {
+              "description": "internal server error"
+            }
+          },
+          "tags": [
+            "Authentication"
+          ]
+        }
+      },
+      "/update": {
+        "patch": {
+          "description": "Update user data using JSON patch",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "$ref": "#/parameters/update"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "ok"
+            },
+            "422": {
+              "description": "unprocessable entity"
+            },
+            "500": {
+              "description": "internal server error"
+            }
+          },
+          "tags": [
+            "JSON patching"
+          ]
+        }
+      },
+      "/generate-thumbnail": {
+        "post": {
+          "description": "Generate thumbnail",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "$ref": "#/parameters/generate-thumbnail"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "422": {
+              "description": "unprocessable entity"
+            },
+            "500": {
+              "description": "internal server error"
+            }
+          },
+          "tags": [
+            "Thumbnail generation"
+          ]
+        }
+      }
+    },
+    "parameters": {
+      "login": {
+        "in": "body",
+        "name": "Login",
+        "description": "Login user",
+        "schema": {
+          "type": "object",
+          "required": [
+            "userName",
+            "password"
+          ],
+          "properties": {
+            "userName": {
+              "type": "string",
+              "default": false
+            },
+            "password": {
+              "type": "string",
+              "default": false
+            }
+          },
+          "example": {
+            "userName": "Rubarema",
+            "password": "1qaz2wsx"
+          }
+        }
+      },
+      "update": {
+        "in": "body",
+        "name": "Update user",
+        "description": "Update user object using JSON patch",
+        "schema": {
+          "type": "object",
+          "example": {
+            "userName": "test user",
+            "firstName": "test",
+            "lastName": "user",
+            "email": "client@mail.com",
+            "password": "new-password"
+          }
+        }
+      },
+      "generate-thumbnail": {
+        "in": "body",
+        "name": "Generate thumbnail",
+        "description": "Generate image from a public image uri",
+        "schema": {
+          "type": "object",
+          "required": [
+            "publicImageUrl"
+          ],
+          "properties": {
+            "publicImageUrl": {
+              "type": "string",
+              "default": false
+            }
+          },
+          "example": {
+            "publicImageUrl": "https://picsum.photos/id/1/200/300"
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "JWT": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    },
+    "security": [
+      {
+        "JWT": []
+      }
+    ]
+  }

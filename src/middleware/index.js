@@ -11,4 +11,5 @@ const errorDisplay = (req, res, errors) => {
   });
   return res.status(422).send({ error: errorArr });
 };
+
 export default errorDisplay;

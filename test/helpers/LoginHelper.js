@@ -1,7 +1,10 @@
 import chai from 'chai';
-import server from '../../src/index';
+import server from '../../src';
 
 const loginUserHelper = (loginData) =>
-  chai.request(server).post('/login').send(loginData);
+  chai
+    .request(server)
+    .post('/login')
+    .send(loginData);
 
 export default loginUserHelper;

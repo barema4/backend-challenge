@@ -12,7 +12,8 @@
 		"coverage",
 		"test",
 		"src/models/**",
-		"src/index.js",
+		"src/utils/thumbnail.js",
+		"src/index.js"
 	],
 	"sourceMap": false,
 	"instrument": false,
